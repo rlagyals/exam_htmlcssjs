@@ -23,25 +23,25 @@
           <!-- 제조사 정보 -->
           <div class="form-row">
             <!-- TODO: [제조사 목록] 수강생 구현 #2 -->
-            <legend>제조사</legend>
-            <select>
-              <option>제조사 선택</option>
-              <option value="">현대</option>
-              <option value="">기아</option>
-              <option value="">제네시스</option>
-              <option value="">쉐보레</option>
-              <option value="">르노</option>
+            <label for="makerInput">제조사</label>
+            <select id="makerInput" name="maker">
+              <option value="">제조사 선택</option>
+              <option value="현대">현대</option>
+              <option value="기아">기아</option>
+              <option value="제네시스">제네시스</option>
+              <option value="쉐보레">쉐보레</option>
+              <option value="르노">르노</option>
             </select>
           </div>
 
           <!-- 모델명 -->
           <div class="form-row">
             <!-- TODO: [모델명] 수강생 구현 #3 -->
-            <legend>모델명</legend>
+            <label for="modelInput">모델명</label>
             <input
               type="text"
-              id="modelName"
-              name="modelName"
+              id="modelInput"
+              name="modelInput"
               placeholder="예: 쏘나타"
             />
           </div>
@@ -49,11 +49,11 @@
           <!-- 연식 -->
           <div class="form-row">
             <!-- TODO: [연식] 수강생 구현 #4 -->
-            <legend>연식</legend>
+            <label for="yearInput">연식</label>
             <input
               type="text"
-              id="modelYear"
-              name="modelYear"
+              id="yearInput"
+              name="yearInput"
               placeholder="예: 2021"
             />
           </div>
@@ -61,11 +61,11 @@
           <!-- 주행거리 -->
           <div class="form-row">
             <!-- TODO: [주행거리(Km)] 수강생 구현 #5 -->
-            <legend>주행거리(km)</legend>
+            <label for="mileageInput">주행거리(km)</label>
             <input
               type="text"
-              id="mileage"
-              name="mileage"
+              id="mileageInput"
+              name="mileageInput"
               placeholder="예: 43000"
             />
           </div>
@@ -73,39 +73,40 @@
           <!-- 가격 -->
           <div class="form-row">
             <!-- TODO: [가격(만원)] 수강생 구현 #6 -->
-            <legend>가격(만원)</legend>
-            <input type="text" id="price" name="price" placeholder="예: 1850" />
+            <label for="priceInput">가격(만원)</label>
+            <input type="text" id="priceInput" name="priceInput" placeholder="예: 1850" />
           </div>
 
           <!-- 연료 -->
           <div class="form-row">
             <!-- TODO: [연료 목록] 수강생 구현 #7 -->
-            <legend>연료</legend>
-            <select>
+            <label for="fuelInput">연료</label>
+            <select id="fuelInput" name="fuel">
               <option>연료 선택</option>
-              <option value="">가솔린</option>
-              <option value="">디젤</option>
-              <option value="">LPG</option>
-              <option value="">하이브리드</option>
-              <option value="">전기</option>
+              <option value="가솔린">가솔린</option>
+              <option value="디젤">디젤</option>
+              <option value="LPG">LPG</option>
+              <option value="하이브리드">하이브리드</option>
+              <option value="전기">전기</option>
             </select>
           </div>
 
           <!-- 판매 상태 -->
           <div class="form-row">
             <!-- TODO: [판매 상태 목록] 수강생 구현 #8 -->
-            <legend>판매 상태</legend>
-            <select>
-              <option>판매 상태</option>
-              <option value="">판매중</option>
-              <option value="">예약중</option>
-              <option value="">판매완료</option>
+            <label for="statusInput">판매 상태</label>
+            <select id="statusInput" name="status">
+              <option value="">판매 상태</option>
+              <option value="판매중">판매중</option>
+              <option value="예약중">예약중</option>
+              <option value="판매완료">판매완료</option>
             </select>
           </div>
           <!-- 등록 / 취소 버튼 -->
           <div class="button-area">
             <!-- TODO: [등록/취소 버튼] 수강생 구현 #9 -->
-            <button>등록</button>
+            <button id="submitButton" type="submit">등록</button>
+            <button id="cancelEditButton" type="button" hidden>취소</button>
           </div>
         </form>
       </section>
@@ -122,15 +123,15 @@
           <!-- TODO: [차량 검색 및 필터 목록] 수강생 구현 #10 -->
           <input
             type="text"
-            id="carSearch"
-            name="carSearch"
+            id="searchInput"
+            name="searchInput"
             placeholder="제조사 또는 모델명 검색"
           />
-          <select>
-            <option>전체</option>
-            <option value="">판매중</option>
-            <option value="">예약중</option>
-            <option value="">판매완료</option>
+          <select id="statusFilter">
+            <option value="전체">전체</option>
+            <option value="판매중">판매중</option>
+            <option value="예약중">예약중</option>
+            <option value="판매완료">판매완료</option>
           </select>
         </div>
 

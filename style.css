@@ -120,17 +120,29 @@ button {
 
 .search-area {
   /* TODO: [search-area] 수강생 구현 #5 */
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
  
 }
 
 .car-list {
   /* TODO: [car-list] 수강생 구현 #6 */
-  
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 16px 0 16px 0;
+  gap: 16px;
 }
 
 .car-card {
   /* TODO: [car-card] 수강생 구현 #7 */
-  
+  width: 100%;
+  gap: auto;
+  border: 1px solid #f5f5f5;
+  border-radius: 10px;
+  padding: 16px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .car-card h3 {
@@ -173,12 +185,14 @@ button {
 
 .card-actions {
   /* TODO: [car-actions] 수강생 구현 #8 */
-  
+  margin-top: 16px;
+  display: flex;
+  gap: 8px;
 }
 
 .card-actions button {
   /* TODO: [card-actions button] 수강생 구현 #9 */
- 
+  width: 100%;
 }
 
 .card-actions .delete-button {
@@ -197,5 +211,15 @@ button {
 /* 화면이 좁아지면 1열로 변경한다. */
 @media (max-width: 800px) {
   /* TODO: [1열 변경] 수강생 구현 #10 */
- 
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .search-area {
+    grid-template-columns: 1fr;
+  }
+
+  .car-list {
+    grid-template-columns: 1fr;
+  }
 }

@@ -148,22 +148,62 @@ function getStatusClass(status) {
 // 차량 등록 또는 수정 처리
 carForm.addEventListener('submit', function (event) {
   // TODO: [차량 등록 / 수정] 수강생 구현 #1
+  event.preventDefault()
+  const carData = getCarFromForm()
+  if (!carData) {
+    return
+  }
+
+  if (editingId === null) {
+    const carID = car.length > 0 ? Math.max(...cars.map((car) => car.id)) + 1 : 1
+    car.push({id: carID, ...carData})
+  } else {
+    cars = cars.map(function (car) {
+      if (car.id === editingId) {
+        return {id: editingId, ...carData}
+      }
+      return car
+    })
+  }
+  resetForm()
+  renderCars()
+
 })
 
 // 차량 카드 안의 수정, 삭제 버튼 처리
 carList.addEventListener('click', function (event) {
   // TODO: [차량 카드 안의 수정 / 삭제 버튼 처리] 수강생 구현 #2
+  const button = event.target.closest('button')
+
+  if (!button) {
+    return
+  }
+
+  const id = Number(button.dataset.id)
+
+  if (button.dataset.action === 'edit') {
+    startEdit(id)
+  } else if (button.dataset.action === 'delete') {
+    deleteCar(id)
+  }
 })
 
 // 검색어를 입력할 때마다 목록을 다시 그린다.
-searchInput.addEventListener(/* TODO: [검색어 입력시 목록 재 출력] 수강생 구현 #3 */)
+searchInput.addEventListener(/* TODO: [검색어 입력시 목록 재 출력] 수강생 구현 #3 */
+  'input', renderCars
+)
 
 // 판매 상태를 바꿀 때마다 목록을 다시 그린다.
-statusFilter.addEventListener(/* TODO: [판매 상태 변경시 목록 재 출력] 수강생 구현 #4 */)
+statusFilter.addEventListener(/* TODO: [판매 상태 변경시 목록 재 출력] 수강생 구현 #4 */
+  'change', renderCars
+)
 
 // 수정 취소
 cancelEditButton.addEventListener('click', function () {
   // TODO: [수정 취소] 수강생 구현 #5
+  'click', function () {
+    resetForm()
+  }
 })
 
 // 입력폼에서 차량 정보 가져와서 객체로 반환
@@ -182,6 +222,47 @@ function getCarFromForm() {
   const maxYear = new Date().getFullYear() + 1
 
   //TODO: [입력 정보 검증 및 차량 객체 반환] 수강생 구현 #6
+  if (!maker) {
+    alert('제조사를 선택해주세요.')
+    return null
+  }
+
+  if (!model) {
+    alert('모델명을 입력해주세요.')
+    modelInput.focus()
+    return null
+  }
+
+  if (!yearText || Number.isNaN(year) || year < 1990 || year > maxYear) {
+    alert('연식은 1990 ~ ${maxYear} 사이의 숫자로 입력해주세요.')
+    yearInput.focus()
+    return null
+  }
+
+  if (!mileageText || Number.isNaN(mileage) || mileage < 0) {
+    alert('주행거리는 0 이상의 숫자로 입력해주세요.')
+    mileageInput.focus()
+    return null
+  }
+
+  if (!priceText || Number.isNaN(price) || price <= 0) {
+    alert('가격은 0보다 큰 숫자로 입력해주세요.')
+    priceInput.focus()
+    return null
+  }
+
+  if (!fuel) {
+    alert('연료 종류를 선택해주세요.')
+    return null
+  }
+
+  if (!status) {
+    alert('판매 상태를 선택해주세요.')
+    return null
+  }
+  return { maker, model, year, mileage, price, fuel, status }
+
+
 }
 
 // 차량 정보 수정 설정
