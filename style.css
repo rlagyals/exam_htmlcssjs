@@ -57,12 +57,12 @@ body {
 
 .form-row {
   /* TODO: [form -row] 수강생 구현 #2 */
- 
+  margin-bottom: 8px;
 }
 
 .form-row label {
   /* TODO: [form-row lable] 수강생 구현 #3 */
-  
+  font-weight: bold;
 }
 
 input,
