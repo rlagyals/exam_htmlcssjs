@@ -31,7 +31,9 @@ body {
 
   /* 입력 영역과 목록 영역을 2열로 배치한다. */
   /* TODO: [입력 영역 / 목록 영역 2열 배치 ] 수강생 구현 #1 */
-
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
 }
 
 .form-card,
