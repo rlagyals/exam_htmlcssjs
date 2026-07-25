@@ -217,47 +217,43 @@ function getCarFromForm() {
   const year = Number(yearText)
   const mileage = Number(mileageText)
   const price = Number(priceText)
-  const maxYear = new Date().getFullYear() + 1
+  const maxYear = new Date().getFullYear() // +1 삭제(2027까지 입력됨)
 
   //TODO: [입력 정보 검증 및 차량 객체 반환] 수강생 구현 #6
   if (!maker) {
-    alert('제조사를 선택해주세요.')
+    alert('제조사를 선택하세요.')
     return null
   }
 
   if (!model) {
-    alert('모델명을 입력해주세요.')
+    alert('모델명을 입력하세요.')
     modelInput.focus()
     return null
   }
 
   if (!yearText || Number.isNaN(year) || year < 1990 || year > maxYear) {
-    alert(`연식은 1990 ~ ${maxYear} 사이의 숫자로 입력해주세요.`)
+    alert(`연식은 1990 ~ ${maxYear} 사이로 입력하세요.`)
     yearInput.focus()
     return null
   }
 
   if (!mileageText || Number.isNaN(mileage) || mileage < 0) {
-    alert('주행거리는 0 이상의 숫자로 입력해주세요.')
+    alert('주행거리는 0 이상 입력하세요.')
     mileageInput.focus()
     return null
   }
 
-  if (!priceText || Number.isNaN(price) || price <= 0) {
-    alert('가격은 0보다 큰 숫자로 입력해주세요.')
+  if (!priceText || Number.isNaN(price) || price <= 1) {
+    alert('가격은 1이상 입력하세요.')
     priceInput.focus()
     return null
   }
 
   if (!fuel) {
-    alert('연료 종류를 선택해주세요.')
+    alert('연료를 선택하세요.')
     return null
   }
 
-  if (!status) {
-    alert('판매 상태를 선택해주세요.')
-    return null
-  }
   return { maker, model, year, mileage, price, fuel, status }
 
 
@@ -284,7 +280,7 @@ function startEdit(id) {
   fuelInput.value = car.fuel
   statusInput.value = car.status
 
-  submitButton.textContent = '수정'
+  submitButton.textContent = '수정 완료'
   cancelEditButton.hidden = false
 
   modelInput.focus()

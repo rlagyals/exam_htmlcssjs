@@ -51,7 +51,7 @@
             <!-- TODO: [연식] 수강생 구현 #4 -->
             <label for="yearInput">연식</label>
             <input
-              type="text"
+              type="number"
               id="yearInput"
               name="yearInput"
               placeholder="예: 2021"
@@ -63,7 +63,7 @@
             <!-- TODO: [주행거리(Km)] 수강생 구현 #5 -->
             <label for="mileageInput">주행거리(km)</label>
             <input
-              type="text"
+              type="number"
               id="mileageInput"
               name="mileageInput"
               placeholder="예: 43000"
@@ -74,7 +74,7 @@
           <div class="form-row">
             <!-- TODO: [가격(만원)] 수강생 구현 #6 -->
             <label for="priceInput">가격(만원)</label>
-            <input type="text" id="priceInput" name="priceInput" placeholder="예: 1850" />
+            <input type="number" id="priceInput" name="priceInput" placeholder="예: 1850" />
           </div>
 
           <!-- 연료 -->
@@ -96,7 +96,6 @@
             <!-- TODO: [판매 상태 목록] 수강생 구현 #8 -->
             <label for="statusInput">판매 상태</label>
             <select id="statusInput" name="status">
-              <option value="">판매 상태</option>
               <option value="판매중">판매중</option>
               <option value="예약중">예약중</option>
               <option value="판매완료">판매완료</option>
@@ -106,7 +105,7 @@
           <div class="button-area">
             <!-- TODO: [등록/취소 버튼] 수강생 구현 #9 -->
             <button id="submitButton" type="submit">등록</button>
-            <button id="cancelEditButton" type="button" hidden>취소</button>
+            <button id="cancelEditButton" type="button" hidden>수정 취소</button>
           </div>
         </form>
       </section>
