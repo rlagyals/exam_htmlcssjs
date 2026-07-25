@@ -155,8 +155,8 @@ carForm.addEventListener('submit', function (event) {
   }
 
   if (editingId === null) {
-    const carID = car.length > 0 ? Math.max(...cars.map((car) => car.id)) + 1 : 1
-    car.push({id: carID, ...carData})
+    const newCarID = cars.length > 0 ? Math.max(...cars.map((car) => car.id)) + 1 : 1
+    cars.push({id: newCarID, ...carData})
   } else {
     cars = cars.map(function (car) {
       if (car.id === editingId) {
@@ -201,9 +201,7 @@ statusFilter.addEventListener(/* TODO: [판매 상태 변경시 목록 재 출�
 // 수정 취소
 cancelEditButton.addEventListener('click', function () {
   // TODO: [수정 취소] 수강생 구현 #5
-  'click', function () {
-    resetForm()
-  }
+  resetForm()
 })
 
 // 입력폼에서 차량 정보 가져와서 객체로 반환
@@ -234,7 +232,7 @@ function getCarFromForm() {
   }
 
   if (!yearText || Number.isNaN(year) || year < 1990 || year > maxYear) {
-    alert('연식은 1990 ~ ${maxYear} 사이의 숫자로 입력해주세요.')
+    alert(`연식은 1990 ~ ${maxYear} 사이의 숫자로 입력해주세요.`)
     yearInput.focus()
     return null
   }
@@ -268,6 +266,26 @@ function getCarFromForm() {
 // 차량 정보 수정 설정
 function startEdit(id) {
   //TODO: [차량 정보 수정 설정] 수강생 구현 #7
+  const car = cars.find(function (car) {
+    return car.id === id
+  })
+
+  if (!car) {
+    return
+  }
+
+  editingId = id
+  
+  makerInput.value = car.maker
+  modelInput.value = car.model
+  yearInput.value = car.year
+  mileageInput.value = car.mileage
+  priceInput.value = car.price
+  fuelInput.value = car.fuel
+  statusInput.value = car.status
+
+  submitButton.textContent = '수정'
+  cancelEditButton.hidden = false
 
   modelInput.focus()
 }
@@ -275,4 +293,26 @@ function startEdit(id) {
 // 차량 정보 삭제
 function deleteCar(id) {
   // TODO: [차량 정보 삭제] 수강생 구현 #8
+  const target = cars.find(function (car) {
+    return car.id === id
+  })
+
+  if (!target) {
+    return
+  }
+
+  const isConfirmed = confirm(`${target.maker} ${target.model} 차량을 삭제하시겠습니까?`)
+  if (!isConfirmed) {
+    return
+  }
+
+  cars = cars.filter(function (car) {
+    return car.id !== id
+  })
+
+  if (editingId === id) {
+    resetForm()
+  }
+
+  renderCars()
 }
