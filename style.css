@@ -32,7 +32,7 @@ body {
   /* 입력 영역과 목록 영역을 2열로 배치한다. */
   /* TODO: [입력 영역 / 목록 영역 2열 배치 ] 수강생 구현 #1 */
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); /* 차량 목록 비율 늘리기 */
   gap: 16px;
 }
 
@@ -82,6 +82,19 @@ select {
   border-radius: 10px;
 }
 
+
+ /* select 박스 화살표 변경 */
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 36px;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+}
+
 input:focus,
 select:focus {
   outline: 3px solid #bfdbfe;
@@ -94,11 +107,23 @@ select:focus {
   gap: 8px;
 }
 
+/* 버튼 애니메이션 및 호버 효과 추가 */
 button {
   padding: 10px 14px;
   border: none;
   border-radius: 10px;
   cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+
+button:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(0);
+  opacity: 1;
 }
 
 #submitButton {
@@ -125,7 +150,7 @@ button {
 .search-area {
   /* TODO: [search-area] 수강생 구현 #5 */
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 3fr) minmax(0, 1fr); /* 검색 창 비율 늘리기 */
   gap: 8px;
  
 }
@@ -141,6 +166,9 @@ button {
 .car-card {
   /* TODO: [car-card] 수강생 구현 #7 */
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   border: 1px solid #f5f5f5;
   border-radius: 10px;
   padding: 16px;
@@ -149,24 +177,26 @@ button {
 }
 
 .car-card h3 {
-  margin: 0 0 10px;
+  margin: 0 0 16px;
 }
 
 .car-card p {
-  margin: 6px 0;
   color: #555;
+  font-size: 16px; /* 폰트 크기 조절 */
+  margin: 0;
 }
 
 .price {
-  font-size: 20px;
+  font-size: 20px !important; /* 폰트 크기 조절 */
   font-weight: 700;
   color: #111827;
 }
 
 .status-badge {
+  align-self: flex-start; /* 폰트 크기 조절 */
   display: inline-block;
-  margin-top: 8px;
-  padding: 5px 10px;
+  padding: 8px 16px;
+  margin: 16px 0;
   border-radius: 999px;
   font-size: 14px;
 }
@@ -188,7 +218,7 @@ button {
 
 .card-actions {
   /* TODO: [car-actions] 수강생 구현 #8 */
-  margin-top: 16px;
+  margin-top: auto;
   display: flex;
   gap: 8px;
 }
